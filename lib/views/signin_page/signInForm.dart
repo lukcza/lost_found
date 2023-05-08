@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:lost_found/views/signIn_page/signUpPage.dart';
 
 import '../../main.dart';
 import '../../widgets/myButton.dart';
+import '../signup_page/signUpPage.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({Key? key}) : super(key: key);
