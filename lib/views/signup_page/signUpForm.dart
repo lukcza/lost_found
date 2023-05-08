@@ -24,70 +24,73 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Form(
-          child: Column(
-            children: <Widget>[
-              TextFormField(
-                autovalidateMode: AutovalidateMode.always,
-                controller: emailController,
-                decoration: const InputDecoration(
-                    hintText: "email",
-                    icon: Icon(Icons.email_outlined)
+    return SafeArea(
+      child: Container(
+          padding: const EdgeInsets.all(20.0),
+          margin: EdgeInsets.only(top:20),
+          child: Form(
+            child: Column(
+              children: <Widget>[
+                TextFormField(
+                  autovalidateMode: AutovalidateMode.always,
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                      hintText: "email",
+                      icon: Icon(Icons.email_outlined)
+                  ),
+                  keyboardType: TextInputType.emailAddress,
                 ),
-                keyboardType: TextInputType.emailAddress,
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                autovalidateMode: AutovalidateMode.always,
-                controller: passwordController,
-                decoration: const InputDecoration(
-                  hintText: "password",
-                  icon: Icon(Icons.lock),
+                const SizedBox(height: 20),
+                TextFormField(
+                  autovalidateMode: AutovalidateMode.always,
+                  controller: passwordController,
+                  decoration: const InputDecoration(
+                    hintText: "password",
+                    icon: Icon(Icons.lock),
+                  ),
+                  obscureText: true,
                 ),
-                obscureText: true,
-              ),
-              const SizedBox(height: 10,),
-              TextFormField(
-                autovalidateMode: AutovalidateMode.always,
-                controller: passwordController2,
-                decoration: const InputDecoration(
-                  hintText: "repeat password",
-                  icon: Icon(Icons.lock),
+                const SizedBox(height: 10,),
+                TextFormField(
+                  autovalidateMode: AutovalidateMode.always,
+                  controller: passwordController2,
+                  decoration: const InputDecoration(
+                    hintText: "repeat password",
+                    icon: Icon(Icons.lock),
+                  ),
+                  obscureText: true,
                 ),
-                obscureText: true,
-              ),
-              const SizedBox(height: 10,),
-              MyButton(
-                width: 200,
-                height: 50,
-                onPressed: () {
-                  signUp();
-                },
-                text: Text('Register'),
-                icon: Icon(Icons.arrow_forward),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              MyButton(
-                width: 200,
-                height: 50,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SignInPage()
-                    ),
-                  );
-                },
-                text: Text('I have an account'),
-                icon: Icon(Icons.arrow_back),
-              ),
-            ],
-          ),
-        )
+                const SizedBox(height: 10,),
+                MyButton(
+                  width: 200,
+                  height: 50,
+                  onPressed: () {
+                    signUp();
+                  },
+                  text: Text('Register'),
+                  icon: Icon(Icons.arrow_forward),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                MyButton(
+                  width: 200,
+                  height: 50,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignInPage()
+                      ),
+                    );
+                  },
+                  text: Text('I have an account'),
+                  icon: Icon(Icons.arrow_back),
+                ),
+              ],
+            ),
+          )
+      ),
     );
   }
 
@@ -106,6 +109,6 @@ class _SignUpFormState extends State<SignUpForm> {
     } on FirebaseAuthException catch (e) {
       print(e);
     }
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    navigatorKey.currentState?.popUntil((route) => route.isFirst);
   }
 }

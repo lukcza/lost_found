@@ -12,7 +12,7 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SignInForm(),
+      body: SafeArea(child: SignInForm()),
     );
   }
 }

@@ -24,55 +24,58 @@ class _SignInFormState extends State<SignInForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Column(
-          children: [
-            TextFormField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                  hintText: "email", icon: Icon(Icons.email_outlined)),
-              keyboardType: TextInputType.emailAddress,
-            ),
-            const SizedBox(height: 20),
-            TextFormField(
-              controller: passwordController,
-              decoration: const InputDecoration(
-                hintText: "password",
-                icon: Icon(Icons.lock),
+    return SafeArea(
+        child: Container(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              TextFormField(
+                controller: emailController,
+                decoration: const InputDecoration(
+                    hintText: "email", icon: Icon(Icons.email_outlined)),
+                keyboardType: TextInputType.emailAddress,
               ),
-              obscureText: true,
-              keyboardType: TextInputType.emailAddress,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            MyButton(
-              width: 200,
-              height: 50,
-              onPressed: () {
-                signIn();
-              },
-              text: Text('Login'),
-              icon: Icon(Icons.check),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            MyButton(
-              width: 200,
-              height: 50,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) {
-                    return const SignUpPage();
-                  }),
-                );
-              },
-              text: Text('Register'),
-              icon: Icon(Icons.arrow_forward),
-            ),
-          ],
+              const SizedBox(height: 20),
+              TextFormField(
+                controller: passwordController,
+                decoration: const InputDecoration(
+                  hintText: "password",
+                  icon: Icon(Icons.lock),
+                ),
+                obscureText: true,
+                keyboardType: TextInputType.emailAddress,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              MyButton(
+                width: 200,
+                height: 50,
+                onPressed: () {
+                  signIn();
+                },
+                text: Text('Login'),
+                icon: Icon(Icons.check),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              MyButton(
+                width: 200,
+                height: 50,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return const SignUpPage();
+                    }),
+                  );
+                },
+                text: Text('Register'),
+                icon: Icon(Icons.arrow_forward),
+              ),
+            ],
+          ),
         ));
   }
 
@@ -90,6 +93,6 @@ class _SignInFormState extends State<SignInForm> {
     } on FirebaseAuthException catch (e) {
       print(e);
     }
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    navigatorKey.currentState?.popUntil((route) => route.isFirst);
   }
 }

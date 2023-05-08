@@ -13,11 +13,13 @@ void main() async {
 }
 final navigatorKey = GlobalKey<NavigatorState>();
 class MyApp extends StatelessWidget {
-
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: StreamBuilder<User?>(
           stream:  FirebaseAuth.instance.authStateChanges(),
