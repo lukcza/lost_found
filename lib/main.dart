@@ -1,13 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:lost_found/routeGenerator.dart';
-import 'package:lost_found/views/home_page/homePage.dart';
-import 'package:lost_found/views/lost_item_add_page/lostItemAddPage.dart';
-import 'package:lost_found/views/lost_item_page/lostItemPage.dart';
-import 'package:lost_found/views/profile_page/profilePage.dart';
-import 'package:lost_found/views/signin_page/signInPage.dart';
-import 'package:lost_found/views/signup_page/signUpPage.dart';
+import 'package:lost_found/route_generator.dart';
+import 'package:lost_found/views/auth/register/sign_up_page.dart';
+import 'package:lost_found/views/home/home_page.dart';
+import 'package:lost_found/views/profile_page/profile_page.dart';
+
 
 import 'firebase_options.dart';
 

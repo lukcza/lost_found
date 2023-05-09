@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lost_found/main.dart';
-import 'package:lost_found/views/home_page/homePage.dart';
-import 'package:lost_found/views/lost_item_add_page/lostItemAddPage.dart';
-import 'package:lost_found/views/lost_item_page/lostItemPage.dart';
-import 'package:lost_found/views/profile_page/profilePage.dart';
-import 'package:lost_found/views/signin_page/signInPage.dart';
-import 'package:lost_found/views/signup_page/signUpPage.dart';
+import 'package:lost_found/views/auth/login/sign_in_page.dart';
+import 'package:lost_found/views/home/home_page.dart';
+import 'package:lost_found/views/profile_page/profile_page.dart';
+import 'views/auth/register/sign_up_page.dart';
+import 'views/item_add/Item_add_page.dart';
+import 'views/item_page/lost_item_page.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {

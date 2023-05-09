@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lost_found/views/signin_page/signInForm.dart';
+import 'sign_in_form.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(child: SignInForm()),
     );
   }
