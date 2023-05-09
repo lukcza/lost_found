@@ -2,6 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lost_found/views/home_page/homePage.dart';
+import 'package:lost_found/views/lost_item_add_page/lostItemAddPage.dart';
+import 'package:lost_found/views/lost_item_page/lostItemPage.dart';
+import 'package:lost_found/views/profile_page/profilePage.dart';
+import 'package:lost_found/views/signin_page/signInPage.dart';
 import 'package:lost_found/views/signup_page/signUpPage.dart';
 
 import 'firebase_options.dart';
@@ -18,6 +22,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '': (_) => MyApp(),
+        'home': (_) => HomePage(),
+        'login': (_) => SignInPage(),
+        'register': (_) => SignUpPage(),
+        'profile': (_) => ProfilePage(),
+        'lostItem': (_) => LostItemPage(),
+        'lostItemAdd': (_) => LostItemAddPage(),
+      },
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       home: Scaffold(

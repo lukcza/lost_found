@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lost_found/views/lost_item_add_page/lostItemAddPage.dart';
@@ -26,12 +27,12 @@ class _HomePageState extends State<HomePage> {
       PersistentBottomNavBarItem(
         icon: Icon(Icons.table_rows),
         title: ("Lost Items"),
-        activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorPrimary: CupertinoColors.activeOrange,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.person),
-        title: ("Settings"),
+        title: ("Profile"),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),

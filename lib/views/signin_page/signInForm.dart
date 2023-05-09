@@ -93,6 +93,7 @@ class _SignInFormState extends State<SignInForm> {
     } on FirebaseAuthException catch (e) {
       print(e);
     }
-    navigatorKey.currentState?.popUntil((route) => route.isFirst);
+    navigatorKey.currentState?.pushNamed('/home')  ;
+    //navigatorKey.currentState?.popUntil((route) => route.isFirst);
   }
 }
