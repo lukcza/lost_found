@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:lost_found/routeGenerator.dart';
 import 'package:lost_found/views/home_page/homePage.dart';
 import 'package:lost_found/views/lost_item_add_page/lostItemAddPage.dart';
 import 'package:lost_found/views/lost_item_page/lostItemPage.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/',
-      routes: {
+      onGenerateRoute:RouteGenerator.generateRoute,
+      /*routes: {
         '': (_) => MyApp(),
         'home': (_) => HomePage(),
         'login': (_) => SignInPage(),
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
         'profile': (_) => ProfilePage(),
         'lostItem': (_) => LostItemPage(),
         'lostItemAdd': (_) => LostItemAddPage(),
-      },
+      },*/
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       home: Scaffold(

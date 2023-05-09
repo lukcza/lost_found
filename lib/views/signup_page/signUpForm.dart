@@ -109,6 +109,6 @@ class _SignUpFormState extends State<SignUpForm> {
     } on FirebaseAuthException catch (e) {
       print(e);
     }
-    navigatorKey.currentState?.popUntil((route) => route.isFirst);
+    navigatorKey.currentState?.pushNamed('/home')  ;
   }
 }
