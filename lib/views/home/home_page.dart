@@ -18,9 +18,9 @@ class _HomePageState extends State<HomePage> {
   @override
    List<Widget> _buildScreens(){
     return  [
-      LostItemAddPage(),
-      ProfilePage(),
       LostItemPage(),
+      ProfilePage(),
+      LostItemAddPage(),
     ];
   }
   List<PersistentBottomNavBarItem> _navBarsItems(){
