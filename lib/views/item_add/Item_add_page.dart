@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -13,9 +12,10 @@ class LostItemAddPage extends StatefulWidget {
 
 class _LostItemAddPageState extends State<LostItemAddPage> {
   File? _image;
-  Future getImageCamera()async{
+
+  Future getImageCamera() async {
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
-    if( image == null) return;
+    if (image == null) return;
 
     final imageTemporary = File(image.path);
 
@@ -23,9 +23,10 @@ class _LostItemAddPageState extends State<LostItemAddPage> {
       this._image = imageTemporary;
     });
   }
-  Future getImageGallery()async{
+
+  Future getImageGallery() async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if( image == null) return;
+    if (image == null) return;
 
     final imageTemporary = File(image.path);
 
@@ -33,6 +34,7 @@ class _LostItemAddPageState extends State<LostItemAddPage> {
       this._image = imageTemporary;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,13 +53,39 @@ class _LostItemAddPageState extends State<LostItemAddPage> {
                       iconSize: 160,
                     ),
                     IconButton(
-                      onPressed: ()=>getImageCamera(),
+                      onPressed: () => getImageCamera(),
                       icon: Icon(Icons.photo_camera),
                       iconSize: 160,
                       color: Colors.amber,
                     ),
                   ],
                 ),
+              ),
+              TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(
+                          color: Colors.amber,
+                          width: 1,
+                        )),
+                    hintText: "Item name"),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(
+                          color: Colors.amber,
+                          width: 1,
+                        )),
+                    hintText: "Place of withdrawal"),
+              ),
+              SizedBox(
+                height: 10,
               ),
               TextField(
                 maxLines: 4,
@@ -68,7 +96,7 @@ class _LostItemAddPageState extends State<LostItemAddPage> {
                           color: Colors.amber,
                           width: 1,
                         )),
-                    hintText: "description..."),
+                    hintText: "Description..."),
               ),
             ],
           ),
