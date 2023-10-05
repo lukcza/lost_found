@@ -13,16 +13,26 @@ class LostItemAddPage extends StatefulWidget {
 }
 
 class _LostItemAddPageState extends State<LostItemAddPage> {
-
-  Key pageKeyController =  GlobalKey();
-  PageController pageController = PageController();
+  Key pageKeyController = GlobalKey();
+  PageController _pageController = PageController();
   var _isVisibleFloatingButton;
-  Future toImagePage()async{
-    await pageController.animateToPage(1, duration: Duration(seconds: 1), curve: Curves.linear);
-    if(pageController.initialPage + 1 == 1){
-      _isVisibleFloatingButton = false;
+  Future toImagePage() async {
+    await _pageController.animateToPage(1,
+        duration: const Duration(seconds: 1), curve: Curves.linear);
+  }
+
+  void onPageChanged(int page) {
+    if (page == 1) {
+      setState(() {
+        _isVisibleFloatingButton = false;
+      });
+    } else {
+      setState(() {
+        _isVisibleFloatingButton = true;
+      });
     }
   }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -31,25 +41,59 @@ class _LostItemAddPageState extends State<LostItemAddPage> {
   }
 
   @override
-  Widget build(BuildContext context){
-
-
-    return  Scaffold(
+  Widget build(BuildContext context) {
+    return Scaffold(
       body: PageView(
         key: pageKeyController,
-        controller: pageController,
+        controller: _pageController,
+        onPageChanged: (pageController) => onPageChanged(pageController),
         scrollDirection: Axis.vertical,
         children: [
-            FormPage(),
-            ImagePickerPage(),
+          const FormPage(),
+          const ImagePickerPage(),
         ],
       ),
       floatingActionButton: Visibility(
         visible: _isVisibleFloatingButton,
-        child: FloatingActionButton(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+           /* Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                child: const Text(
+                  "to set image",
+                  style: TextStyle(color: Colors.grey),
+                )),*/
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FloatingActionButton(
+                  disabledElevation: 0,
+                  onPressed: toImagePage,
+                  /*backgroundColor: Colors.grey.withOpacity(0),
+                  shape: const CircleBorder(side: BorderSide.none),*/
+                  /*child: Row(
+                    children: [
+                      Text("set image"),
+                      Icon(Icons.keyboard_arrow_down_rounded)
+                    ],
+                  )*/
+
+                ),
+              ],
+            )
+          ],
+        ),
+        /*child: FloatingActionButton(
+
+          foregroundColor: null,
+          backgroundColor: ,
+          shape: BeveledRectangleBorder(
+            borderRadius: BorderRadius.zero
+          ),
             onPressed:()=>toImagePage(),
             child: Icon(Icons.arrow_downward),
-        ),
+        ),*/
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

@@ -1,10 +1,19 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:lost_found/views/item_add/pages/image_picker_page.dart';
+import 'package:provider/provider.dart';
 
 class FormPage extends StatelessWidget {
   const FormPage({Key? key}) : super(key: key);
-  @override
   // TODO: implement key
-  Key? get key => super.key;
+
+  //TODO: implement send items to firebase
+  Future uploadItemToFirestore() async{
+
+  }
+  @override
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +58,7 @@ class FormPage extends StatelessWidget {
                           )),
                       hintText: "Description..."),
                 ),
+                ElevatedButton(onPressed:()=> print("siuuuu"), child: Text('send'))
               ],
             )
         ),

@@ -41,6 +41,9 @@ dependencies:
   persistent_bottom_nav_bar: ^5.0.2
   image_picker: ^0.8.8
   path_provider: ^2.0.15
+  cloud_firestore: ^4.9.3
+  firebase_storage: ^11.2.8
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:

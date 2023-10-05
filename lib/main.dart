@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:lost_found/route_generator.dart';
 import 'package:lost_found/views/auth/register/sign_up_page.dart';
 import 'package:lost_found/views/home/home_page.dart';
+import 'package:lost_found/views/item_add/pages/image_picker_page.dart';
 import 'package:lost_found/views/profile_page/profile_page.dart';
+import 'package:provider/provider.dart';
 
 
 import 'firebase_options.dart';
@@ -12,7 +14,8 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
-  runApp( MyApp());
+  runApp(
+      ChangeNotifierProvider(create:(context) =>ImagePickedData() ,child: MyApp()));
 }
 final navigatorKey = GlobalKey<NavigatorState>();
 class MyApp extends StatelessWidget {
