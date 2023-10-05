@@ -37,13 +37,7 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
     final imageTemporary = File(image.path);
     return imageTemporary;
   }
-  Future uploadImage() async{
-    final firebase_storage.Reference storageRef =
-    firebase_storage.FirebaseStorage.instance.ref().child('path/to/your/file.jpg');
-   // final task = storageRef.putFile(_image!);
-    //final String downloadUrl = await task.then((snapshot) => snapshot.ref.getDownloadURL());
-    final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  }
+
   @override
   Widget build(BuildContext context) {
     var imageProvider = Provider.of<ImagePickedData>(context);
