@@ -5,12 +5,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:provider/provider.dart';
-class ImagePickedData extends ChangeNotifier{
-  File? myImage;
-  void updateValue(Future<File> newValue){
-    myImage =newValue as File?;
-  }
-}
+
+import '../../../models/item_model.dart';
+
 class ImagePickerPage extends StatefulWidget {
   const ImagePickerPage({Key? key}) : super(key: key);
 
@@ -19,8 +16,6 @@ class ImagePickerPage extends StatefulWidget {
 }
 
 class _ImagePickerPageState extends State<ImagePickerPage> {
-
-
   Future<File> getImageCamera() async {
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image == null) throw Error();
@@ -43,61 +38,63 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
     var imageProvider = Provider.of<ImagePickedData>(context);
     File? image = imageProvider.myImage;
     return Scaffold(
-      body:Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              decoration:  BoxDecoration(
-                  //borderRadius: BorderRadius.all(Radius.circular(60)),
-                  border: Border(
-                    top: BorderSide(
-                      color: Colors.amber,
-                      width: 2,
-                    ),
-                    bottom: BorderSide(
-                      color: Colors.amber,
-                      width: 2,
-                    ),
-                    left: BorderSide(
-                      color: Colors.amber,
-                      width: 3,
-                    ),
-                    right: BorderSide(
-                      color: Colors.amber,
-                      width: 3,
-                    ),
-                  )),
-              child:image != null
-                  ? Image.file(image!)
-                  : const Icon(
-                      Icons.image_not_supported_rounded,
-                      size: 220,
-                    ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.values.last,
-              children: [
-                IconButton(
-                  onPressed: () => imageProvider.updateValue(getImageGallery()),
-                  icon: const Icon(
-                    Icons.image,
-                    color: Colors.green,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                //borderRadius: BorderRadius.all(Radius.circular(60)),
+                border: Border(
+              top: BorderSide(
+                color: Colors.amber,
+                width: 2,
+              ),
+              bottom: BorderSide(
+                color: Colors.amber,
+                width: 2,
+              ),
+              left: BorderSide(
+                color: Colors.amber,
+                width: 3,
+              ),
+              right: BorderSide(
+                color: Colors.amber,
+                width: 3,
+              ),
+            )),
+            child: image != null
+                ? Image.file(image!)
+                : const Icon(
+                    Icons.image_not_supported_rounded,
+                    size: 220,
                   ),
-                  iconSize: 80,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.values.last,
+            children: [
+              IconButton(
+                onPressed: () =>
+                    imageProvider.updateImageValue(getImageGallery()),
+                icon: const Icon(
+                  Icons.image,
+                  color: Colors.green,
                 ),
-                IconButton(
-                  onPressed: () => imageProvider.updateValue(getImageCamera()),
-                  icon: const Icon(
-                    Icons.camera_alt,
-                    color: Colors.amberAccent,
-                  ),
-                  iconSize: 80,
+                iconSize: 80,
+              ),
+              IconButton(
+                onPressed: () =>
+                    imageProvider.updateImageValue(getImageCamera()),
+                icon: const Icon(
+                  Icons.camera_alt,
+                  color: Colors.amberAccent,
                 ),
-              ],
-            )
-          ],
-        ),
+                iconSize: 80,
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

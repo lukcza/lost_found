@@ -8,16 +8,20 @@ import 'package:lost_found/views/item_add/pages/image_picker_page.dart';
 import 'package:lost_found/views/profile_page/profile_page.dart';
 import 'package:provider/provider.dart';
 
-
 import 'firebase_options.dart';
+import 'models/item_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
-  runApp(
-      ChangeNotifierProvider(create:(context) =>ImagePickedData() ,child: MyApp()));
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(ChangeNotifierProvider(
+      create: (context) => ImagePickedData(), child: MyApp()));
 }
+
 final navigatorKey = GlobalKey<NavigatorState>();
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -25,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/',
-      onGenerateRoute:RouteGenerator.generateRoute,
+      onGenerateRoute: RouteGenerator.generateRoute,
       /*routes: {
         '': (_) => MyApp(),
         'home': (_) => HomePage(),
@@ -39,15 +43,19 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: StreamBuilder<User?>(
-          stream:  FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot){
-            if(snapshot.connectionState == ConnectionState.waiting){
-              return  const Center(child: CircularProgressIndicator(),);
-            }else if(snapshot.hasError){
-              return const Center(child: Text('Something goes wrong'),);
-            } else if(snapshot.hasData){
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapshot.hasError) {
+              return const Center(
+                child: Text('Something goes wrong'),
+              );
+            } else if (snapshot.hasData) {
               return const HomePage();
-            }else {
+            } else {
               return const SignUpPage();
             }
           },
