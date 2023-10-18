@@ -14,8 +14,8 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       body: Center(
         child: IconButton(
-            onPressed: ()=>FirebaseAuth.instance.signOut(),
-            icon: Icon(Icons.logout)),
+            onPressed: () => FirebaseAuth.instance.signOut(),
+            icon: const Icon(Icons.logout)),
       ),
     );
   }

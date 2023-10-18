@@ -74,7 +74,8 @@ class FormPage extends StatelessWidget {
     );
   }
 
-  Future uploadFoundItemWithImage(File image, BuildContext context) async {
+  Future uploadFoundItemWithImage(File image, BuildContext context,
+      String title, String description) async {
     final firebase_storage.Reference storageRef = firebase_storage
         .FirebaseStorage.instance
         .ref()
@@ -82,13 +83,30 @@ class FormPage extends StatelessWidget {
     final task = storageRef.putFile(image);
     final String downloadUrl =
         await task.then((snapshot) => snapshot.ref.getDownloadURL());
-    Provider.of<ImagePickedData>(context).downloadedURL;
-    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    Provider.of<ImagePickedData>(context).downloadedURL = downloadUrl;
+    final CollectionReference itemsCollection =
+        FirebaseFirestore.instance.collection('items');
+    Map<String, dynamic> itemData = {
+      'title': title,
+      'description': description,
+      'image': downloadUrl,
+    };
+    itemsCollection.doc('found').set(itemData);
     print('upload done with image');
   }
 
-  Future uploadFoundItem() async {
-    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  Future uploadFoundItem(
+      String title, String description, BuildContext context) async {
+    Provider.of<ImagePickedData>(context).title = title;
+    Provider.of<ImagePickedData>(context).description = description;
+    Provider.of<ImagePickedData>(context).itemState = true;
+    final CollectionReference itemsCollection =
+        FirebaseFirestore.instance.collection('items');
+    Map<String, dynamic> itemData = {
+      'title': title,
+      'description': description,
+    };
+    itemsCollection.doc('found').set(itemData);
     print('upload done');
   }
 }

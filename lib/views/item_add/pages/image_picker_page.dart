@@ -28,7 +28,6 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
   Future<File> getImageGallery() async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (image == null) throw Error();
-
     final imageTemporary = File(image.path);
     return imageTemporary;
   }
@@ -42,7 +41,7 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 //borderRadius: BorderRadius.all(Radius.circular(60)),
                 border: Border(
               top: BorderSide(
